@@ -14,7 +14,8 @@ const bionicTextParser = (elem) => {
             words.forEach((word, index) => {
                 const wordCount = word.length;
                 const wordFloor = Math.floor(wordCount / 2);
-                const wordSplit = wordCount - Math.min(3, wordFloor);
+                // const wordSplit = wordCount - Math.min(3, wordFloor);
+                const wordSplit = wordFloor;
                 words[index] = `<span class="b-e__strong">${word.substring(0, wordSplit)}</span>${word.substring(wordSplit)}`;
 
                 // words[index] = `${word}-edited`
