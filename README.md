@@ -3,8 +3,8 @@ Perform a bionic emphasis bolding standard to all text in an element. Inspired b
 
 ## Instructions
 
-1. Add the "bionic-emphasis" class to any element you would like this effect for. 
-2. Run the script in the 'bionic-emphasis.js' file 
+1. Add the "bionic-emphasis" class to any element you would like this effect for 
+2. Run the script in the `bionic-emphasis.js` file 
 
 ### If working with a Single-Page Application (SPA)
 
