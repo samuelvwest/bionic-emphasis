@@ -368,6 +368,7 @@ const bionicTextParser = (elem) => {
     });
 }
 windu.create({
+    name: 'bionicEmphasis',
     selector: '.bionic-emphasis',
     attach: function (elem) {
         bionicTextParser(elem);
