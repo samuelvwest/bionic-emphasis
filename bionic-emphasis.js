@@ -35,4 +35,6 @@ const bionicTextParser = (elem) => {
         }
     });
 }
-bionicTextParser(elem);
+Array.prototype.slice.call(document.querySelectorAll('.bionic-emphasis')).forEach((elem) => {
+    bionicTextParser(elem);
+});
