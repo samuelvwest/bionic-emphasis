@@ -340,24 +340,30 @@ window.windu = {
 const bionicEmphasisStyles = document.createElement('style');
 bionicEmphasisStyles.id = 'bionicEmphasisStyles';
 bionicEmphasisStyles.innerHTML = `
-    .bionic-emphasis .b-e__strong {
-        font-weight: bold;
+    .bionic-emphasis .be_s {
+        font-weight: bolder;
     }`
 document.head.append(bionicEmphasisStyles)
 const bionicTextParser = (elem) => {
+    const assembleWord = (w) => {
+        const wordSplit = Math.ceil(w.length / 2);
+        return `<span class="be_s">${w.substring(0, wordSplit)}</span>${w.substring(wordSplit)}`
+    }
     elem.childNodes.forEach((cEl, cElIndex) => {
         if (cEl.nodeType === 3) {
-            const txt = cEl.data;
-            const words = cEl.data.split(' ')
+            const words = cEl.data.split(' ');
             words.forEach((word, index) => {
-                const wordCount = word.length;
-                const wordFloor = Math.floor(wordCount / 2);
-                // const wordSplit = wordCount - Math.min(3, wordFloor);
-                const wordSplit = wordFloor;
-                words[index] = `<span class="b-e__strong">${word.substring(0, wordSplit)}</span>${word.substring(wordSplit)}`;
+                let wrdStr = assembleWord(word);
+                if (/\xa0|&nbsp;| /.test(word)) {
+                    word.split('\xa0').forEach((wd, wdi) => {
+                        wrdStr = wdi === 0 ? assembleWord(wd) : `${wrdStr}\xa0${assembleWord(wd)}`;
+                    })
+                }
+                words[index] = wrdStr;
 
                 // words[index] = `${word}-edited`
-            })
+            });
+            console.log(words);
             const emphisizedWordsElem = document.createElement('span');
             emphisizedWordsElem.innerHTML = words.join(" ");
             // cEl.data = emphisizedWordsElem.innerHTML;
